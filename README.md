@@ -21,5 +21,6 @@ $ node server.js &
 اسکرین شات هایی از سامانه ی ساخته شده
 
 ![alt text](https://github.com/mohammad-smm/ostad-daneshjoo/blob/master/Screenshot%20(11).png)
+![alt text](https://github.com/mohammad-smm/ostad-daneshjoo/blob/master/Screenshot%20(15).png)
 ![alt text](https://github.com/mohammad-smm/ostad-daneshjoo/blob/master/Screenshot%20(12).png)
 ![alt text](https://github.com/mohammad-smm/ostad-daneshjoo/blob/master/Screenshot%20(9).png)
