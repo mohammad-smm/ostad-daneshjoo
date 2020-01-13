@@ -1,0 +1,80 @@
+doctype html
+html(lang="#{siteinfo.lang}")
+  head
+    meta(charset='utf-8')
+    meta(name='description' content='#{siteinfo.desc}')
+    meta(name='keywords' content='#{siteinfo.keywords}')
+    meta(name="viewport",content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    title #{siteinfo.name} - #{pageTitle}
+    //if lt IE 9
+      script(src='//html5shim.googlecode.com/svn/trunk/html5.js')
+    link(rel='stylesheet', href='/css/#{siteinfo.theme}.css')
+    
+    if siteinfo.hljs_host == "local"
+      link(rel='stylesheet', href='/css/#{siteinfo.hljs_theme}.min.css')
+      script(src='/js/highlight.min.js')
+    else if siteinfo.hljs_host == "yandex"
+      link(rel='stylesheet', href='http://yandex.st/highlightjs/7.5/styles/#{siteinfo.hljs_theme}.min.css')
+      script(src='http://yandex.st/highlightjs/7.5/highlight.min.js')
+    else if siteinfo.hljs_host == "cdnjs"
+      link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/7.4/styles/#{siteinfo.hljs_theme}.min.css')
+      script(src='//cdnjs.cloudflare.com/ajax/libs/highlight.js/7.4/highlight.min.js')
+    
+    if siteinfo.jquery_host == "local"
+      script(src='/js/jquery-1.10.2.min.js')
+    else
+      script(src='#{siteinfo.jquery_host}')
+      
+    script(src='/js/main.js?v=201311151034')
+    
+  body
+    .message(class=message?'show':'hide')=message
+
+    //if lt IE 8
+      div.browsehappy 您的浏览器版本<strong>很旧很旧</strong>，为了正常地访问网站，请升级您的浏览器 <a target="_blank" href="http://browsehappy.com">立即升级</a>
+
+    .container
+      header
+        .headerBox
+          .sitename
+            h1!= siteinfo.name
+            h3!= siteinfo.desc
+          .sitelogo
+            img(src='#{siteinfo.logo}', alt='#{siteinfo.name}')
+          .clear
+      nav
+        ul
+          li(class=(currentNav=='index')?'on':'') <a href='/index'>#{langs.nav_blog}</a>
+          li(class=(currentNav=='about')?'on':'') <a href='/about'>#{langs.nav_aboutme}</a>
+          if loginStatus
+            li.adminGate(class=(currentNav=='admin')?'on':'') <a href='#'>#{langs.nav_admin}</a>
+              div.adminMenu
+                ul
+                  li <a href='/admin/setting'>#{langs.nav_admin_setting}</a>
+                  li <a href='/admin/data'>#{langs.nav_admin_data}</a>
+                  li <a href='/post/add'>#{langs.nav_admin_addpost}</a>
+                  li <a href='/post/admin'>#{langs.nav_admin_myposts}</a>
+                  li <a href='/user/passwd'>#{langs.nav_admin_password}</a>
+                  li <a href='/user/logout'>#{langs.nav_admin_logout}</a>
+          else
+            li(class=(currentNav=='login')?'on':'') <a href='/user/login'>#{langs.nav_admin_login}</a>
+      section.content
+        .contentBox
+          block content
+      section.relevant
+        .releventBox
+          !=relevant
+      footer
+        .footerBox
+          !=siteinfo.footer
+      
+      if siteinfo.gaid
+        script.
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', '#{siteinfo.gaid}']);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();

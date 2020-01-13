@@ -1,0 +1,39 @@
+extend layout
+
+block content
+  
+  h3 #{langs.mypost_admin} <a class="trashLink" href="/post/trash">#{langs.mypost_trashlink}</a>
+  
+  if postList
+    table.postList
+      thead
+        tr
+          th #{langs.mypost_th_id}
+          th #{langs.mypost_th_title}
+          th #{langs.mypost_th_created}
+          th #{langs.mypost_th_actions}
+      tbody
+        each post in postList
+          tr
+            td #{post._id}
+            td
+              a(href="/post/view/#{post._id}", target="_blank") #{post.title}
+            td.txtcenter #{post.created}
+            td.txtcenter
+              a(href="/post/update/#{post._id}") #{langs.mypost_action_update}
+              | &nbsp;|&nbsp;
+              a(href="/post/trash/#{post._id}", onclick="return confirm('#{langs.mypost_trash_tip}');") #{langs.mypost_action_trash}
+              | &nbsp;|&nbsp;
+              - if (topIds.indexOf(post._id) == -1)
+                a.addtop(href="javascript:void(0);", data-id="#{post._id}", data-lang="#{langs.mypost_deltop}") #{langs.mypost_addtop}
+              - else
+                a.deltop(href="javascript:void(0);", data-id="#{post._id}", data-lang="#{langs.mypost_addtop}") #{langs.mypost_deltop}
+
+    div.page
+      if newerPage
+        a.newerPage(href="/post/admin/#{newerPage}") #{langs.page_newer}
+      if olderPage
+        a.olderPage(href="/post/admin/#{olderPage}") #{langs.page_older}
+      
+  else
+    p #{langs.tip_nopost}<a href="/post/add">#{langs.nav_admin_addpost}</a>

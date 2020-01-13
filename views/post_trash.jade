@@ -1,0 +1,28 @@
+extend layout
+
+block content
+  
+  h3 #{langs.mypost_trash} <a class="adminLink" href="/post/admin">#{langs.mypost_adminlink}</a>
+  
+  if postList.length
+    table.postList
+      thead
+        tr
+          th #{langs.mypost_th_id}
+          th #{langs.mypost_th_title}
+          th #{langs.mypost_th_created}
+          th #{langs.mypost_th_actions}
+      tbody
+        each post in postList
+          tr
+            td #{post._id}
+            td
+              a(href="/post/view/#{post._id}", target="_blank") #{post.title}
+            td.txtcenter #{post.created}
+            td.txtcenter
+              a(href="/post/restore/#{post._id}") #{langs.mypost_action_restore}
+              &nbsp|&nbsp;
+              a(href="/post/remove/#{post._id}", onclick="return confirm('#{langs.mypost_remove_tip}');") #{langs.mypost_action_remove}
+
+  else
+    p #{langs.mypost_trash_empty}

@@ -1,0 +1,38 @@
+extend layout
+
+block content
+  if topList.length
+    h7.postYear #{langs.top_list}
+    
+    each post in topList
+      article
+        span.dateyear #{post.year}
+        span.datetime #{post.date}
+        a.title(href='/post/view/#{post._id}', title='#{post.title}') #{post.title}
+        each tag in post.tags
+          h2.k #{tag}
+          
+    hr.line
+
+  if postList.length
+    - var year = ''
+    each post,key in postList
+      - if (year != post.year)
+        h7.postYear #{post.year}
+      - year = post.year
+      - if (key>0 && key%5 == 0)
+        .blankline
+      article
+        span.datetime #{post.date}
+        a.title(href='/post/view/#{post._id}', title='#{post.title}') #{post.title}
+        each tag in post.tags
+          h2.k #{tag}
+      
+  else
+    p #{langs.tip_nopost}<a href="/post/add">#{langs.nav_admin_addpost}</a>
+
+  div.page
+    if newerPage
+      a.newerPage(href="/index/#{newerPage}") #{langs.page_newer}
+    if olderPage
+      a.olderPage(href="/index/#{olderPage}") #{langs.page_older}

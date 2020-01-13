@@ -1,0 +1,110 @@
+extend layout
+
+block content
+  link(rel='stylesheet', href='/css/markdown.css')
+  script(src="/js/Markdown.Converter.js")
+  script(src="/js/Markdown.Editor.js")
+  script(src="/js/Markdown.Sanitizer.js")
+
+  form(name="postForm", action="/admin/setting", method="POST", enctype="multipart/form-data")
+    div
+      lable.formLabel #{langs.setting_lang} <span class="formTips">#{langs.setting_lang_tip}</span>
+      input.tinyInput(name="siteinfo[lang]", class="formControl", value=setting.siteinfo.lang, required="required")
+      
+    div
+      label.formLabel #{langs.setting_sitename} <span class="formTips">#{langs.setting_sitename_tip}</span>
+      input.mormalInput(name="siteinfo[name]", class="formControl", value=setting.siteinfo.name, required="required")
+
+    div
+      label.formLabel #{langs.setting_sitedesc} <span class="formTips">#{langs.setting_sitedesc_tip}</span>
+      textarea.smallTextarea(name="siteinfo[desc]", class="formControl")=setting.siteinfo.desc
+
+    div
+      label.formLabel #{langs.setting_keywords} <span class="formTips">#{langs.setting_keywords_tip}</span>
+      input.mormalInput(name="siteinfo[keywords]", class="formControl", value=setting.siteinfo.keywords)
+
+    div
+      label.formLabel #{langs.setting_commentservice} 
+        span.formTips!= langs.setting_commentservice_tip
+      select.normalSelect(name="siteinfo[comment_service]")
+        each value,key in setting.comments
+          option(value="#{key}", selected=(setting.siteinfo.comment_service==key)) #{value}
+
+    div
+      label.formLabel #{langs.setting_commentserviceid} <span class="formTips">#{langs.setting_commentserviceid_tip}</span>
+      input.tinyInput(name="siteinfo[comment_id]", class="formControl", value=setting.siteinfo.comment_id)
+
+    div
+      label.formLabel #{langs.setting_gaid} <span class="formTips">#{langs.setting_gaid_tip}</span>
+      input.tinyInput(name="siteinfo[gaid]", class="formControl", value=setting.siteinfo.gaid)
+
+    div
+      label.formLabel #{langs.setting_sitelogo} <span class="formTips">#{langs.setting_sitelogo_tip}</span>
+      input.mormalInput(type="file", name="logofile", class="formControl", value=setting.siteinfo.logo)
+
+    div
+      lable.formLabel #{langs.setting_theme} <span class="formTips">#{langs.setting_theme_tip}</span>
+      select.normalSelect(name="siteinfo[theme]")
+        option(value="style", selected=(setting.siteinfo.theme=="style")) Default narrow
+        option(value="style-wide", selected=(setting.siteinfo.theme=="style-wide")) Default wide
+        option(value="style-github", selected=(setting.siteinfo.theme=="style-github")) Default Github
+        
+    div
+      label.formLabel #{langs.setting_footer} <span class="formTips">#{langs.setting_footer_tip}</span>
+      textarea.smallTextarea(name="siteinfo[footer]", class="formControl", required="required")=setting.siteinfo.footer
+
+    div.wmd-panel
+      label.formLabel #{langs.setting_aboutme}  <span class="formTips">#{langs.setting_aboutme_tip}</span>
+      #wmd-button-bar
+      textarea.wmd-input(id="wmd-input" name="aboutme", class="formControl postContentField")=aboutme
+    div.wmd-preview
+      
+    div
+      label.formLabel #{langs.setting_links} <span class="formTips">#{langs.setting_links_tip}</span>
+      textarea.largeTextarea(name="links", class="formControl")=linksText
+      
+    div
+      label.formLabel #{langs.setting_meweb} <span class="formTips">#{langs.setting_meweb_tip}</span>
+      textarea.largeTextarea(name="webinfo", class="formControl")=webinfoText
+      
+    div
+      lable.formLabel #{langs.setting_jquery_host} <span class="formTips">#{langs.setting_jquery_host_tip}</span>
+      select.normalSelect(name="siteinfo[jquery_host]")
+        option(value="local", selected=(setting.siteinfo.jquery_host=="local")) #{langs.setting_host_local}
+        option(value="http://libs.baidu.com/jquery/1.10.2/jquery.min.js", selected=(setting.siteinfo.jquery_host=="http://libs.baidu.com/jquery/1.10.2/jquery.min.js")) Baidu CDN
+        option(value="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js", selected=(setting.siteinfo.jquery_host=="http://lib.sinaapp.com/js/jquery/1.10.2/jquery-1.10.2.min.js")) Sina SAE
+        option(value="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js", selected=(setting.siteinfo.jquery_host=="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")) Google CDN
+        option(value="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js", selected=(setting.siteinfo.jquery_host=="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js")) cdnjs CDN
+        option(value="http://yandex.st/jquery/1.10.2/jquery.min.js", selected=(setting.siteinfo.jquery_host=="http://yandex.st/jquery/1.10.2/jquery.min.js")) Yandex CDN
+      |&nbsp; <a href="http://developer.baidu.com/wiki/index.php?title=docs/cplat/libs" target="_blank">Baidu CDN</a>
+      |&nbsp; <a href="http://lib.sinaapp.com/" target="_blank">Sina SAE</a>
+      |&nbsp; <a href="https://developers.google.com/speed/libraries/" target="_blank">Google CDN</a>
+      |&nbsp; <a href="http://cdnjs.com/" target="_blank">cdnjs CDN</a>
+      |&nbsp; <a href="http://api.yandex.ru/jslibs/libs.xml" target="_blank">Yandex CDN</a>
+
+    div
+      lable.formLabel #{langs.setting_hljs_host} <span class="formTips">#{langs.setting_hljs_host_tip}</span>
+      select.normalSelect(name="siteinfo[hljs_host]")
+        option(value="local", selected=(setting.siteinfo.hljs_host=="local")) #{langs.setting_host_local}
+        option(value="yandex", selected=(setting.siteinfo.hljs_host=="yandex")) Yandex CDN
+        option(value="cdnjs", selected=(setting.siteinfo.hljs_host=="cdnjs")) cdnjs CDN
+
+    div
+      lable.formLabel #{langs.setting_hljs_theme} <span class="formTips">#{langs.setting_hljs_theme_tip}</span>
+      select.normalSelect(name="siteinfo[hljs_theme]")
+        - var options = {"default": "Default", "dark": "Dark", "far": "FAR", "idea": "IDEA", "sunburst": "Sunburst", "zenburn": "Zenburn", "vs": "Visual Studio", "ascetic": "Ascetic", "magula": "Magula", "github": "GitHub", "googlecode": "Google Code", "brown_paper": "Brown Paper", "school_book": "School Book", "ir_black": "IR Black", "solarized_dark": "Solarized - Dark", "solarized_light": "Solarized - Light", "arta": "Arta", "monokai": "Monokai", "monokai_sublime": "Monokai Sublime", "xcode": "XCode", "pojoaque": "Pojoaque", "rainbow": "Rainbow", "tomorrow": "Tomorrow", "tomorrow-night": "Tomorrow Night", "tomorrow-night-bright": "Tomorrow Night Bright", "tomorrow-night-blue": "Tomorrow Night Blue", "tomorrow-night-eighties": "Tomorrow Night Eighties", "railscasts": "Railscasts", "obsidian": "Obsidian", "docco": "Docco", "mono-blue": "Mono Blue", "foundation": "Foundation"};
+        each name,value in options
+          option(value="#{value}", selected=(setting.siteinfo.hljs_theme==value)) #{name}
+      |&nbsp; <a href="http://highlightjs.org/static/test.html" target="_blank">#{langs.setting_hljs_theme_demo}</a>
+           
+    div
+      input.submit(type="submit", value="#{langs.setting_submit}")
+
+    script.
+      (function () {
+      var converter = new Markdown.Converter();
+      var editor = new Markdown.Editor(converter);
+      editor.run();
+      })();
+      
+    div.divider

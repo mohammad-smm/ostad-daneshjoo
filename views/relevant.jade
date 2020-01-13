@@ -1,0 +1,19 @@
+.tags
+  h3 #{langs.relevant_tags}
+  - for(var k in tagList)
+    a(href='/tag/view/#{k}', title='#{k}') #{k}<span>#{tagList[k]}</span>
+  div.clear
+.aboutme
+  h3 #{langs.relevant_meweb}
+  ul
+    - for(var l in webinfo)
+      li
+        a(href='#{webinfo[l]}', title='#{l}', target='_blank') #{l}
+.links
+  h3 #{langs.relevant_links}
+  ul
+    - for(var l in links)
+      li
+        a(href='#{links[l]}', title='#{l}', target='_blank') #{l}
+
+div.clear

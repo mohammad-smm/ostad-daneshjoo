@@ -1,0 +1,15 @@
+extend layout
+
+block content
+  form(name="loginForm", action="/user/login", method="POST")
+    .loginForm
+      input(name="referer" type="hidden" value="#{referer}")
+
+      div
+        input(name="username", class="formControl loginField", size="20", placeholder="#{langs.login_username}", required="required")
+
+      div
+        input(name="password", class="formControl loginField", type="password", size="20", placeholder="#{langs.login_password}", required="required")
+
+      div
+        input.submit(type="submit", class="bcenter", value="#{langs.login_submit}")
