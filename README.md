@@ -17,3 +17,10 @@ $ node server.js &
 برای اجرا بایستی آدرس بالا را در مرور گر خود وارد کنید
     
 در این سامانه برای استاد پروفایل موجود است  که در آن میتوان پست گذاشت و پست های موجو را ویرایش کرد .. از پست ها پشتیبان گرفت و پست های را به ترتیب دلخواه چید
+
+اسکرین شات هایی از سامانه ی ساخته شده
+
+![alt text](https://github.com/mohammad-smm/ostad-daneshjoo/blob/master/Screenshot%20(11).png)
+![alt text](https://github.com/mohammad-smm/ostad-daneshjoo/blob/master/Screenshot%20(12).png)
+![alt text](https://github.com/mohammad-smm/ostad-daneshjoo/blob/master/Screenshot%20(14).png)
+![alt text](https://github.com/mohammad-smm/ostad-daneshjoo/blob/master/Screenshot%20(9).png)
