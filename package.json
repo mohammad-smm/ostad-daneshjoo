@@ -15,6 +15,6 @@
         "errorhandler": "1.1.1",
         "jade": "1.4.2",
         "marked": "0.3.9",
-        "adm-zip": "0.4.4"
+        "adm-zip": "0.4.11"
     }
 }
