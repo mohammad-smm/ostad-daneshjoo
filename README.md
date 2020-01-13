@@ -22,5 +22,4 @@ $ node server.js &
 
 ![alt text](https://github.com/mohammad-smm/ostad-daneshjoo/blob/master/Screenshot%20(11).png)
 ![alt text](https://github.com/mohammad-smm/ostad-daneshjoo/blob/master/Screenshot%20(12).png)
-![alt text](https://github.com/mohammad-smm/ostad-daneshjoo/blob/master/Screenshot%20(14).png)
 ![alt text](https://github.com/mohammad-smm/ostad-daneshjoo/blob/master/Screenshot%20(9).png)
