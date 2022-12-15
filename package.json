@@ -5,7 +5,7 @@
     "author": "mohammadmadanyan@gmail.com",
     "private": "false",
     "dependencies": {
-        "express": "4.6.1",
+        "express": "4.17.3",
         "serve-favicon": "2.0.1",
         "body-parser": "1.4.3",
         "connect-multiparty": "1.1.0",
